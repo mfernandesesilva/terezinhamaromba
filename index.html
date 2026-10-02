@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Meu Treino</title>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f2f7f6;--card:#fff;--ink:#12302f;--mute:#5a7372;--pri:#0e6b66;--onpri:#fff;--acc:#e8a13a;--line:#d5e3e1;--soft:#e3f0ee;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1d1c;--card:#142a29;--ink:#e6f2f0;--mute:#93b0ad;--pri:#4fc3b9;--onpri:#06201e;--acc:#f0b44f;--line:#254240;--soft:#1b3836}}
+:root[data-theme="dark"]{--bg:#0d1d1c;--card:#142a29;--ink:#e6f2f0;--mute:#93b0ad;--pri:#4fc3b9;--onpri:#06201e;--acc:#f0b44f;--line:#254240;--soft:#1b3836}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:18px/1.45 "Atkinson Hyperlegible",system-ui,sans-serif;max-width:640px;margin-inline:auto;padding-bottom:90px}
+header{padding:20px 18px 6px}
+h1{font-size:26px;margin:0}
+.sub{color:var(--mute);font-size:16px;margin:2px 0 0}
+.days{display:flex;gap:8px;padding:12px 18px;overflow-x:auto}
+.day{flex:1 0 auto;min-width:62px;border:2px solid var(--line);background:var(--card);color:var(--ink);border-radius:16px;padding:8px 6px;font:inherit;font-weight:700;cursor:pointer;text-align:center}
+.day small{display:block;font-weight:400;font-size:13px;color:var(--mute)}
+.day[aria-selected=true]{background:var(--pri);color:var(--onpri);border-color:var(--pri)}
+.day[aria-selected=true] small{color:var(--onpri)}
+.hero{margin:4px 18px 12px;padding:16px;background:var(--soft);border-radius:20px}
+.hero h2{margin:0;font-size:22px}
+.hero p{margin:4px 0 12px;color:var(--mute);font-size:16px}
+.bar{height:12px;background:var(--line);border-radius:8px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--acc);border-radius:8px;transition:width .3s}
+.pct{font-size:15px;margin-top:6px;font-weight:700}
+.alert{margin:0 18px 12px;padding:12px 14px;border-left:5px solid var(--acc);background:var(--card);border-radius:10px;font-size:16px}
+.ph{margin:18px 18px 8px;display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.ph h3{margin:0;font-size:19px}
+.ph span{color:var(--mute);font-size:15px}
+.ex{margin:0 18px 10px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px}
+.row{display:flex;gap:12px;align-items:flex-start}
+.chk{flex:none;width:36px;height:36px;border-radius:50%;border:3px solid var(--pri);background:transparent;color:var(--onpri);font-size:20px;cursor:pointer;display:grid;place-items:center;padding:0}
+.chk[aria-pressed=true]{background:var(--pri)}
+.nm{font-weight:700;margin:0}
+.ds{margin:0;color:var(--pri);font-weight:700;font-size:16px}
+.done .nm{text-decoration:line-through;color:var(--mute)}
+.acts{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.btn{font:inherit;font-size:16px;font-weight:700;border-radius:12px;padding:8px 14px;border:2px solid var(--pri);background:transparent;color:var(--pri);cursor:pointer;text-decoration:none;display:inline-block}
+.btn.f{background:var(--pri);color:var(--onpri)}
+.tip{display:none;margin:10px 0 0;font-size:16px;color:var(--ink);background:var(--soft);padding:10px;border-radius:10px}
+.tip.o{display:block}
+.reset{display:block;margin:20px auto;background:none;border:none;color:var(--mute);font:inherit;font-size:15px;text-decoration:underline;cursor:pointer}
+nav{position:fixed;bottom:0;left:0;right:0;max-width:640px;margin:auto;display:flex;background:var(--card);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
+nav button{flex:1;padding:14px;border:none;background:none;font:inherit;font-weight:700;color:var(--mute);cursor:pointer}
+nav button[aria-selected=true]{color:var(--pri);box-shadow:inset 0 3px 0 var(--pri)}
+.card{margin:12px 18px;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:16px}
+.card h3{margin:0 0 8px}
+input{font:inherit;padding:10px;border-radius:10px;border:2px solid var(--line);background:var(--bg);color:var(--ink);width:120px}
+.wl{list-style:none;padding:0;margin:10px 0 0}
+.wl li{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line)}
+.wk{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:8px;text-align:center;font-size:15px}
+.wk div{background:var(--soft);border-radius:12px;padding:8px 2px}
+.wk b{display:block;font-size:18px}
+:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.hide{display:none}
+</style>
+</head>
+<body>
+<header><h1>Meu Treino</h1><p class="sub">Terça a sábado · meta: perder 10 kg em 6 meses</p></header>
+
+<main id="tv">
+<div class="days" id="days" role="tablist"></div>
+<div id="day"></div>
+</main>
+
+<main id="pv" class="hide">
+<div class="card"><h3>Esta semana</h3><div class="wk" id="wk"></div></div>
+<div class="card"><h3>Meu peso</h3>
+<p class="sub" id="wsum">Início: 70 kg · Meta: 60 kg</p>
+<div class="bar" style="margin:10px 0"><i id="wbar" style="width:0"></i></div>
+<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><input id="kg" type="number" inputmode="decimal" step="0.1" placeholder="Peso (kg)" aria-label="Peso em kg"><button class="btn f" id="addw">Registrar peso</button></div>
+<ul class="wl" id="wl"></ul></div>
+<div class="card"><h3>Cuidados com a pressão</h3><p class="sub" style="font-size:16px">Respire sempre: solte o ar no esforço e puxe ao voltar. Nunca prenda a respiração. Se sentir tontura, dor no peito ou dor de cabeça forte, pare e procure atendimento. Beba água e levante-se devagar do chão.</p></div>
+</main>
+
+<nav><button id="n1" aria-selected="true">Treino</button><button id="n2" aria-selected="false">Progresso</button></nav>
+
+<script>
+const E=(n,d,t,q)=>({n,d,t,q});
+const P=(t,m,i)=>({t,m,i});
+const AQ=(a,b)=>P("1. Aquecimento no lugar","4 a 5 min",[a,b]);
+const LIB=(a,b)=>P("5. Liberação muscular","3 a 4 min",[a,b]);
+const DAYS={
+ter:{s:"Ter",n:"Terça-feira",f:"Pernas e glúteo A",ph:[
+AQ(E("Marcha estacionária","2 min","Eleve os joelhos suavemente, no ritmo dos braços.","como fazer marcha estacionária aquecimento"),E("Polichinelo adaptado (sem impacto)","2 min","Passo lateral alternado com os braços subindo.","polichinelo sem impacto adaptado"))
+,P("2. Mobilidade e aquecimento da perna","3 min",[E("Rotação de quadril em pé","10 círculos cada lado","Faça círculos amplos e lentos, apoiando a mão na parede.","rotação de quadril em pé mobilidade"),E("Mobilidade de tornozelo na parede","10 por perna","Leve o joelho em direção à parede sem tirar o calcanhar do chão.","mobilidade de tornozelo na parede"),E("Agachamento com peso do corpo","1 série de 10, bem lento","Sem peso e sem elástico, só para preparar.","agachamento peso do corpo técnica iniciante")])
+,P("3. Treino principal","25 min",[E("Agachamento na cadeira com mini band","3 x 10-12","Mini band acima dos joelhos. Mantenha os joelhos para fora, vencendo o elástico.","agachamento na cadeira com mini band"),E("Elevação pélvica (ponte) com mini band","3 x 12-15","No topo, abra levemente as pernas contra o elástico, aperte o glúteo por 2 s e desça.","elevação pélvica com mini band glúteo"),E("Cadeira extensora adaptada com caneleira 2 kg","3 x 12 por perna","Sentada, estenda o joelho devagar sustentando a caneleira.","extensora na cadeira com caneleira em casa"),E("Afundo estático com apoio","3 x 8-10 por perna","Uma mão na cadeira ou parede para equilíbrio.","afundo estático com apoio na cadeira")])
+,P("4. Abdominal + assoalho pélvico","8 min",[E("Kegel deitada de costas","3 x 10 contrações","Contraia como se fosse segurar o xixi, mantenha 3 a 5 s e relaxe.","exercício de Kegel assoalho pélvico mulher"),E("Abdominal infra: elevação alternada de joelhos","3 x 12","Deitada, suba um joelho por vez, controlando a respiração.","abdominal infra elevação alternada de joelhos")])
+,LIB(E("Massagem nos pés e glúteos (mão ou bolinha)","1 min em cada ponto","Pressão suave, sem dor aguda.","automassagem bolinha pés e glúteos"),E("Alongamento de quadríceps e glúteos","20 s cada lado","Alongue sem forçar.","alongamento quadríceps e glúteos em pé"))]},
+qua:{s:"Qua",n:"Quarta-feira",f:"Glúteo, abdômen e postura (leve)",ph:[
+AQ(E("Marcha com elevação dos braços","2 min","Braços sobem a cada passo.","marcha no lugar com braços aquecimento"),E("Step touch (passo lateral)","2 min","Passo para o lado e junta, balançando os braços.","step touch exercício aquecimento"))
+,P("2. Mobilidade e aquecimento do core e glúteo","3 min",[E("Gato-vaca","8 repetições","No chão ou apoiada na cadeira, arredonde e estenda a coluna.","gato vaca exercício coluna"),E("Abdução de quadril em pé","10 por lado","Sem peso, tronco firme.","abdução de quadril em pé sem peso")])
+,P("3. Treino principal","20 min",[E("Ponte de glúteo com mini band","3 x 12","Joelhos alinhados, suba apertando o glúteo.","ponte de glúteo com mini band"),E("Quatro apoios: perna e braço opostos (bird-dog)","3 x 8 por lado","Estenda braço e perna opostos sem girar o quadril.","bird dog exercício iniciante"),E("Glúteo 4 apoios com caneleira 2 kg","3 x 12 por perna","Empurre o calcanhar em direção ao teto.","glúteo 4 apoios com caneleira"),E("Remada alta com elástico","3 x 12","Pise no elástico e puxe as mãos até o peito, cotovelos para cima.","remada alta com elástico para ombros")])
+,P("4. Abdominal + assoalho e prancha","10 min",[E("Kegel com ponte","3 x 10","Ao subir o quadril, contraia o assoalho pélvico por 3 s.","ponte com ativação do assoalho pélvico"),E("Prancha inclinada (mãos no sofá)","3 x 20 s","Corpo em linha reta, respirando normalmente.","prancha inclinada no sofá iniciante")])
+,LIB(E("Automassagem nas costas e glúteos","2 min","Movimentos lentos e suaves.","automassagem costas e glúteos"),E("Abraçar os joelhos deitada","30 s","Solte o ar devagar.","alongamento abraçar os joelhos deitada"))]},
+qui:{s:"Qui",n:"Quinta-feira",f:"Costas, ombros e postura",ph:[
+AQ(E("Marcha no lugar com braços","2 min","Eleve os braços a cada passo.","marcha no lugar com elevação dos braços"),E("Step touch","2 min","Balanço lateral de braços e pernas.","step touch exercício aquecimento"))
+,P("2. Mobilidade e aquecimento das costas","3 min",[E("Rotação de ombros","10 cada sentido","Para frente e para trás.","rotação de ombros mobilidade"),E("Gato-vaca","8 repetições","Mobiliza a coluna.","gato vaca exercício coluna")])
+,P("3. Treino principal","25 min",[E("Remada curvada com elástico","3 x 12","Pise no elástico, tronco inclinado com coluna reta, puxe em direção ao umbigo.","remada curvada com elástico"),E("Puxada aberta com elástico","3 x 12","Cotovelos descem em direção às costas.","puxada aberta com elástico em casa"),E("Flexão de braço na parede","3 x 10-12","Corpo reto, afaste os pés da parede conforme ficar fácil.","flexão de braço na parede técnica"),E("Remada alta com elástico","3 x 12","Cotovelos apontando para cima.","remada alta com elástico para ombros")])
+,P("4. Prancha isométrica adaptada","5 min",[E("Prancha apoiada na parede, sofá ou cadeira","3 x 20-30 s","Abdômen contraído, respirando normalmente.","prancha isométrica apoiada na parede iniciante")])
+,LIB(E("Automassagem de ombros e trapézio","2 min","Massagem leve.","automassagem trapézio e ombros"),E("Alongar peitoral no batente e grande dorsal","20 s cada lado","Sem forçar.","alongamento peitoral no batente da porta"))]},
+sex:{s:"Sex",n:"Sexta-feira",f:"Glúteo e posterior de coxa B",ph:[
+AQ(E("Marcha subindo o joelho","2 min","Ritmo confortável.","marcha estacionária joelho alto aquecimento"),E("Chutes leves para trás","2 min","Aciona o glúteo.","chute para trás em pé glúteo aquecimento"))
+,P("2. Mobilidade e aquecimento do glúteo","3 min",[E("Abdução de quadril em pé","10 por lado","Sem peso.","abdução de quadril em pé sem peso"),E("Mobilidade de tornozelo e quadril","10 repetições","Movimentos suaves.","mobilidade de quadril e tornozelo")])
+,P("3. Treino principal","25 min",[E("Stiff com elástico","3 x 10-12","Quadril para trás, joelhos levemente dobrados, costas retas. Volte apertando o glúteo.","stiff com elástico em pé técnica"),E("Glúteo 4 apoios com caneleira 2 kg","3 x 12 por perna","Caneleira no tornozelo, calcanhar rumo ao teto.","glúteo 4 apoios com caneleira"),E("Abdução deitada de lado","3 x 12-15 por perna","Caneleira ou mini band nos tornozelos, tronco firme.","abdução de quadril deitada de lado com caneleira"),E("Panturrilha em pé","3 x 15","Suba na ponta dos pés bem devagar.","elevação de panturrilha em pé em casa")])
+,P("4. Abdominal + assoalho pélvico","8 min",[E("Ponte com ativação pélvica","3 x 10","Contraia o assoalho por 3 s ao subir.","ponte com ativação do assoalho pélvico"),E("Abdominal supra adaptado","3 x 10-12","Mãos atrás da cabeça, subida curta do tronco, sem puxar o pescoço.","abdominal supra adaptado técnica correta")])
+,LIB(E("Automassagem nos posteriores e glúteos","2 min","Suave.","automassagem posterior de coxa"),E("Abraçar os joelhos deitada","30 s","Alongamento de posterior e glúteo.","alongamento abraçar os joelhos deitada"))]},
+sab:{s:"Sáb",n:"Sábado",f:"Funcional corpo inteiro",ph:[
+AQ(E("Marcha viva alternando ritmos","3 min","Varie lento e rápido.","marcha estacionária aquecimento"),E("Polichinelo adaptado sem salto","2 min","Sem impacto.","polichinelo sem impacto adaptado"))
+,P("2. Mobilidade e aquecimento geral","3 min",[E("Giro de tronco em pé","10 repetições","Leve, sem forçar a lombar.","giro de tronco em pé mobilidade"),E("Mobilidade de ombros, quadril e tornozelos","2 min","Movimentos circulares suaves.","mobilidade articular geral aquecimento")])
+,P("3. Treino principal","25 min",[E("Passada lateral com mini band","3 x 10 passos por lado","Quadril levemente agachado.","passada lateral com mini band"),E("Remada curvada alternada com elástico","3 x 12 no total","Coluna reta.","remada curvada alternada com elástico"),E("Agachamento sumô","3 x 12","Base aberta, foco na parte interna da coxa e glúteo.","agachamento sumô peso do corpo"),E("Crucifixo inverso com elástico","3 x 12","Abra os braços esticando a faixa, força entre as escápulas.","crucifixo inverso com elástico")])
+,P("4. Prancha isométrica adaptada","6 min",[E("Prancha ventral inclinada (mãos no sofá)","3 x 25-35 s","Firme e respirando.","prancha inclinada no sofá iniciante"),E("Prancha lateral com joelhos apoiados","2 x 15 s cada lado","Quadril alinhado.","prancha lateral com joelhos apoiados")])
+,LIB(E("Automassagem nas costas e coxas","2 min","Suave.","automassagem costas e coxas"),E("Alongamento do corpo inteiro","2 min","Espreguiçar longo, pernas e peitoral.","alongamento corpo inteiro final de treino"))]}
+};
+const KEYS=Object.keys(DAYS);
+const LS={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+let done=LS.get("t_done",{}),weights=LS.get("t_w",[]);
+const wd=["dom","seg","ter","qua","qui","sex","sab"][new Date().getDay()];
+let cur=KEYS.includes(wd)?wd:"ter";
+const $=id=>document.getElementById(id);
+const total=k=>DAYS[k].ph.reduce((a,p)=>a+p.i.length,0);
+const count=k=>Object.keys(done).filter(x=>x.startsWith(k+"-")&&done[x]).length;
+function vid(q){return "https://www.youtube.com/results?search_query="+encodeURIComponent(q)}
+function renderTabs(){
+ $("days").innerHTML=KEYS.map(k=>`<button class="day" role="tab" aria-selected="${k===cur}" data-k="${k}">${DAYS[k].s}<small>${count(k)}/${total(k)}</small></button>`).join("");
+ $("days").querySelectorAll("button").forEach(b=>b.onclick=()=>{cur=b.dataset.k;render()});
+}
+function render(){
+ const D=DAYS[cur],t=total(cur),c=count(cur),p=Math.round(c/t*100);
+ let h=`<section class="hero"><h2>${D.n}</h2><p>${D.f}</p><div class="bar"><i style="width:${p}%"></i></div><div class="pct">${c} de ${t} exercícios · ${p}%</div></section>
+ <div class="alert">Respire sem prender o ar. Pare se sentir tontura ou dor.</div>`;
+ D.ph.forEach((ph,pi)=>{
+  h+=`<div class="ph"><h3>${ph.t}</h3><span>${ph.m}</span></div>`;
+  ph.i.forEach((e,ei)=>{
+   const id=`${cur}-${pi}-${ei}`,on=!!done[id];
+   h+=`<div class="ex ${on?"done":""}"><div class="row"><button class="chk" aria-pressed="${on}" aria-label="Marcar ${e.n}" data-id="${id}">${on?"✓":""}</button><div><p class="nm">${e.n}</p><p class="ds">${e.d}</p></div></div>
+   <div class="acts"><a class="btn f" href="${vid(e.q)}" target="_blank" rel="noopener">Ver vídeo</a><button class="btn" data-tip="${id}">Como fazer</button></div><p class="tip" id="tip-${id}">${e.t}</p></div>`;
+  });
+ });
+ h+=`<button class="reset" id="rs">Limpar marcações deste dia</button>`;
+ $("day").innerHTML=h;
+ document.querySelectorAll(".chk").forEach(b=>b.onclick=()=>{done[b.dataset.id]=!done[b.dataset.id];LS.set("t_done",done);render()});
+ document.querySelectorAll("[data-tip]").forEach(b=>b.onclick=()=>$("tip-"+b.dataset.tip).classList.toggle("o"));
+ $("rs").onclick=()=>{Object.keys(done).forEach(x=>{if(x.startsWith(cur+"-"))delete done[x]});LS.set("t_done",done);render()};
+ renderTabs();
+}
+function renderProg(){
+ $("wk").innerHTML=KEYS.map(k=>`<div>${DAYS[k].s}<b>${Math.round(count(k)/total(k)*100)}%</b></div>`).join("");
+ const last=weights.length?weights[weights.length-1].kg:70,lost=Math.max(0,70-last),pct=Math.min(100,lost/10*100);
+ $("wbar").style.width=pct+"%";
+ $("wsum").textContent=`Início: 70 kg · Atual: ${last} kg · Meta: 60 kg (faltam ${Math.max(0,(last-60)).toFixed(1)} kg)`;
+ $("wl").innerHTML=weights.slice().reverse().slice(0,8).map(w=>`<li><span>${w.d}</span><b>${w.kg} kg</b></li>`).join("");
+}
+$("addw").onclick=()=>{const v=parseFloat($("kg").value.replace(",","."));if(!v||v<30||v>200)return;weights.push({d:new Date().toLocaleDateString("pt-BR"),kg:v});LS.set("t_w",weights);$("kg").value="";renderProg()};
+function tab(p){$("tv").classList.toggle("hide",p);$("pv").classList.toggle("hide",!p);$("n1").setAttribute("aria-selected",!p);$("n2").setAttribute("aria-selected",p);if(p)renderProg();else render()}
+$("n1").onclick=()=>tab(false);$("n2").onclick=()=>tab(true);
+render();
+</script>
+</body>
+</html>

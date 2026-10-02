@@ -52,7 +52,7 @@ nav button[aria-selected=true]{color:var(--pri);box-shadow:inset 0 3px 0 var(--p
 input{font:inherit;padding:10px;border-radius:10px;border:2px solid var(--line);background:var(--bg);color:var(--ink);width:120px}
 .wl{list-style:none;padding:0;margin:10px 0 0}
 .wl li{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line)}
-.wk{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:8px;text-align:center;font-size:15px}
+.wk{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:8px;text-align:center;font-size:15px}
 .wk div{background:var(--soft);border-radius:12px;padding:8px 2px}
 .wk b{display:block;font-size:18px}
 :focus-visible{outline:3px solid var(--acc);outline-offset:2px}
@@ -60,7 +60,7 @@ input{font:inherit;padding:10px;border-radius:10px;border:2px solid var(--line);
 </style>
 </head>
 <body>
-<header><h1>Meu Treino</h1><p class="sub">Terça a sábado · meta: perder 10 kg em 6 meses</p></header>
+<header><h1>Meu Treino</h1><p class="sub">Terça, quinta, sexta e sábado · meta: perder 10 kg em 6 meses</p></header>
 
 <main id="tv">
 <div class="days" id="days" role="tablist"></div>
@@ -91,12 +91,6 @@ AQ(E("Marcha estacionária","2 min","Eleve os joelhos suavemente, no ritmo dos b
 ,P("3. Treino principal","25 min",[E("Agachamento na cadeira com mini band","3 x 10-12","Mini band acima dos joelhos. Mantenha os joelhos para fora, vencendo o elástico.","agachamento na cadeira com mini band"),E("Elevação pélvica (ponte) com mini band","3 x 12-15","No topo, abra levemente as pernas contra o elástico, aperte o glúteo por 2 s e desça.","elevação pélvica com mini band glúteo"),E("Cadeira extensora adaptada com caneleira 2 kg","3 x 12 por perna","Sentada, estenda o joelho devagar sustentando a caneleira.","extensora na cadeira com caneleira em casa"),E("Afundo estático com apoio","3 x 8-10 por perna","Uma mão na cadeira ou parede para equilíbrio.","afundo estático com apoio na cadeira")])
 ,P("4. Abdominal + assoalho pélvico","8 min",[E("Kegel deitada de costas","3 x 10 contrações","Contraia como se fosse segurar o xixi, mantenha 3 a 5 s e relaxe.","exercício de Kegel assoalho pélvico mulher"),E("Abdominal infra: elevação alternada de joelhos","3 x 12","Deitada, suba um joelho por vez, controlando a respiração.","abdominal infra elevação alternada de joelhos")])
 ,LIB(E("Massagem nos pés e glúteos (mão ou bolinha)","1 min em cada ponto","Pressão suave, sem dor aguda.","automassagem bolinha pés e glúteos"),E("Alongamento de quadríceps e glúteos","20 s cada lado","Alongue sem forçar.","alongamento quadríceps e glúteos em pé"))]},
-qua:{s:"Qua",n:"Quarta-feira",f:"Glúteo, abdômen e postura (leve)",ph:[
-AQ(E("Marcha com elevação dos braços","2 min","Braços sobem a cada passo.","marcha no lugar com braços aquecimento"),E("Step touch (passo lateral)","2 min","Passo para o lado e junta, balançando os braços.","step touch exercício aquecimento"))
-,P("2. Mobilidade e aquecimento do core e glúteo","3 min",[E("Gato-vaca","8 repetições","No chão ou apoiada na cadeira, arredonde e estenda a coluna.","gato vaca exercício coluna"),E("Abdução de quadril em pé","10 por lado","Sem peso, tronco firme.","abdução de quadril em pé sem peso")])
-,P("3. Treino principal","20 min",[E("Ponte de glúteo com mini band","3 x 12","Joelhos alinhados, suba apertando o glúteo.","ponte de glúteo com mini band"),E("Quatro apoios: perna e braço opostos (bird-dog)","3 x 8 por lado","Estenda braço e perna opostos sem girar o quadril.","bird dog exercício iniciante"),E("Glúteo 4 apoios com caneleira 2 kg","3 x 12 por perna","Empurre o calcanhar em direção ao teto.","glúteo 4 apoios com caneleira"),E("Remada alta com elástico","3 x 12","Pise no elástico e puxe as mãos até o peito, cotovelos para cima.","remada alta com elástico para ombros")])
-,P("4. Abdominal + assoalho e prancha","10 min",[E("Kegel com ponte","3 x 10","Ao subir o quadril, contraia o assoalho pélvico por 3 s.","ponte com ativação do assoalho pélvico"),E("Prancha inclinada (mãos no sofá)","3 x 20 s","Corpo em linha reta, respirando normalmente.","prancha inclinada no sofá iniciante")])
-,LIB(E("Automassagem nas costas e glúteos","2 min","Movimentos lentos e suaves.","automassagem costas e glúteos"),E("Abraçar os joelhos deitada","30 s","Solte o ar devagar.","alongamento abraçar os joelhos deitada"))]},
 qui:{s:"Qui",n:"Quinta-feira",f:"Costas, ombros e postura",ph:[
 AQ(E("Marcha no lugar com braços","2 min","Eleve os braços a cada passo.","marcha no lugar com elevação dos braços"),E("Step touch","2 min","Balanço lateral de braços e pernas.","step touch exercício aquecimento"))
 ,P("2. Mobilidade e aquecimento das costas","3 min",[E("Rotação de ombros","10 cada sentido","Para frente e para trás.","rotação de ombros mobilidade"),E("Gato-vaca","8 repetições","Mobiliza a coluna.","gato vaca exercício coluna")])
